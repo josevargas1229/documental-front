@@ -1,82 +1,200 @@
-<!-- LOGIN  |  SADIT-CVH
-     Header sin sombra/borde + logo + botón atrás -->
-     <section class="min-h-screen bg-gray-50 flex flex-col">
+<section class="min-h-screen flex flex-col relative overflow-hidden bg-white">
+    <div class="absolute left-0 top-0 w-1/2 
+        h-20 sm:h-24 md:h-28 lg:h-40 
+        bg-[#A02142] rounded-br-3xl z-0">
+    </div>
 
-        <!-- ========= HEADER: sin sombra, sin borde, solo logo y atrás ========= -->
-        <header class="bg-white px-6 py-4 flex items-center justify-between">
-          <!-- Botón atrás -->
-          <a href="#" class="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-            </svg>
-            <span class="text-sm">Atrás</span>
-          </a>
-      
-          <!-- Logo -->
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-lg bg-gray-700 flex items-center justify-center text-white font-bold">SV</div>
-            <div>
-              <h1 class="text-sm font-semibold text-gray-900">SADIT-CVH</h1>
-              <p class="text-[11px] text-gray-500">Transporte Convencional</p>
+    <header class="bg-white px-6 py-4 flex items-center justify-between lg:hidden border-b border-gray-200 z-10">
+      <a routerLink="/public/home" class="flex items-center gap-2 text-gray-600 hover:text-[#691831] transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        <span class="text-sm">Atrás</span>
+      </a>
+    </header>
+
+    <div class="hidden lg:flex absolute top-8 left-8 z-20">
+      <a routerLink="/public/home" 
+        class="flex items-center gap-3 px-5 py-3 bg-white rounded-lg shadow-lg hover:shadow-xl transition text-gray-700 hover:text-[#691831] font-medium">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        <span>Volver al inicio</span>
+      </a>
+    </div>
+
+    <div class="flex flex-1 w-full">
+        <div class="hidden lg:flex lg:w-1/2 items-center justify-center p-12 bg-white">
+            <div class="max-w-md space-y-8 text-left">
+
+                <div class="flex items-center gap-3">
+                    <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" style="color: #BC955B;">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.81-7-7.93 0-.62.08-1.21.21-1.79l6.79 6.79v2.93zm8.93-3.66c-.34.34-.73.62-1.13.84L15 13.59V3.06c4.04.53 7 3.86 7 7.94 0 1.95-.74 3.73-1.93 5.03z"></path>
+                    </svg>
+                    <div class="text-gray-900">
+                        <h1 class="text-xl font-bold">SADIT-CVH</h1>
+                        <p class="text-xs text-gray-500">Sistema de Archivos Documentales</p>
+                    </div>
+                </div>
+
+                <h2 class="text-5xl font-extrabold leading-tight" style="color: #691831;">
+                    Sistema de Archivos Documentales
+                </h2>
+
+                <p class="text-lg text-gray-600">
+                    Gestiona, organiza y accede a todos tus documentos de manera profesional y segura.
+                </p>
+
+                <ul class="space-y-2 text-gray-700">
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #BC955B;">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        Gestión jerárquica y eficiente
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #BC955B;">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        Búsqueda avanzada con filtros
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #BC955B;">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        Acceso seguro y rápido
+                    </li>
+                </ul>
             </div>
-          </div>
-      
-          <!-- Espacio vacío para equilibrio -->
-          <div class="w-16"></div>
-        </header>
-      
-        <!-- ========= LOGIN: centrado ========= -->
-        <main class="flex-1 flex items-center justify-center px-6 py-10">
-          <div class="w-full max-w-sm bg-white rounded-xl border border-gray-200 shadow-sm p-6 space-y-5">
-      
-            <!-- Título -->
-            <div class="text-center">
-              <h2 class="text-lg font-semibold text-gray-900">Iniciar sesión</h2>
-              <p class="text-sm text-gray-500 mt-1">Accede al sistema de digitalización</p>
+        </div>
+
+        <div class="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 bg-gray-50">
+            <div class="w-full max-w-md space-y-8 p-8 bg-white rounded-xl shadow-2xl border border-gray-100">
+
+                <div class="text-center space-y-2">
+                    <h2 class="text-3xl font-bold" style="color: #691831;">Iniciar Sesión</h2>
+                    <p class="text-gray-600">Ingrese sus credenciales para continuar</p>
+                </div>
+
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
+
+                    <!-- USUARIO -->
+                    <div>
+                        <label for="username" class="sr-only">Nombre de usuario</label>
+                        <div class="relative">
+                            <input
+                                type="text"
+                                id="username"
+                                formControlName="username"
+                                required
+                                autocomplete="username"
+                                class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg 
+                                focus:outline-none focus:ring-1 focus:ring-[#691831] focus:border-[#691831]"
+                                placeholder="Escribe tu usuario"
+                            />
+                            <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                        </div>
+
+                        <div *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.errors?.['required']"
+                            class="mt-1 text-xs text-red-500">
+                            El nombre de usuario es obligatorio.
+                        </div>
+                    </div>
+
+                    <!-- PASSWORD -->
+                    <div class="relative">
+                        <input
+                            [type]="showPassword ? 'text' : 'password'"
+                            id="password"
+                            formControlName="password"
+                            required
+                            autocomplete="current-password"
+                            class="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg 
+                            focus:outline-none focus:ring-1 focus:ring-[#691831] focus:border-[#691831]"
+                            placeholder="Escribe tu contraseña"
+                        />
+
+                        <!-- Candado -->
+                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 9V7a3 3 0 00-6 0v2" />
+                        </svg>
+
+                        <!-- OJITO -->
+                        <button
+                            type="button"
+                            (click)="togglePassword()"
+                            class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#691831]"
+                        >
+                            <!-- Ojo abierto -->
+                            <svg *ngIf="!showPassword" class="w-5 h-5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 
+                                    4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+
+                            <!-- Ojo cerrado -->
+                            <svg *ngIf="showPassword" class="w-5 h-5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7a9.97 
+                                    9.97 0 012.223-3.592M6.18 6.18A9.953 9.953 0 0112 5c4.477 0 8.268 
+                                    2.943 9.542 7a9.974 9.974 0 01-4.043 5.112M6.18 6.18L3 3m3.18 
+                                    3.18L10 10m8.82 8.82L21 21m-3.18-3.18L14 14" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- ERROR -->
+                    <div *ngIf="errorMessage"
+                        class="p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm">
+                        {{ errorMessage }}
+                    </div>
+
+                    <!-- BOTÓN LOGIN -->
+                    <button
+                        type="submit"
+                        [disabled]="loginForm.invalid || isLoading"
+                        class="w-full px-4 py-3 rounded-lg bg-[#691831] text-white 
+                        hover:bg-[#A02142] transition font-medium disabled:opacity-50 
+                        flex items-center justify-center space-x-2"
+                    >
+                        <span *ngIf="!isLoading">Iniciar Sesión</span>
+
+                        <svg *ngIf="isLoading" class="animate-spin h-5 w-5 text-white"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10"
+                                stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 
+                                5.373 0 12h4zm2 5.291A7.962 7.962 0 014 
+                                12H0c0 3.042 1.135 5.824 3 
+                                7.938l3-2.647z"></path>
+                        </svg>
+
+                        <span *ngIf="isLoading">Verificando...</span>
+                    </button>
+                </form>
+
+                <div class="text-center pt-2 text-sm font-medium">
+                    <span class="text-gray-900">¿Olvidaste tu contraseña?</span>
+                    <a routerLink="/auth/forgot-password"
+                        class="transition text-[#691831] hover:text-[#A02142]">
+                        Recupérala aquí
+                    </a>
+                </div>
+
             </div>
-      
-            <!-- Formulario -->
-            <form class="space-y-4">
-              <!-- Correo -->
-              <div>
-                <label for="email" class="text-sm text-gray-700">Correo electrónico</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="admin@hidalgo.gob.mx"
-                />
-              </div>
-      
-              <!-- Contraseña -->
-              <div>
-                <label for="password" class="text-sm text-gray-700">Contraseña</label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  required
-                  class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="••••••••"
-                />
-              </div>
-      
-              <!-- Botón de acceso: AZUL -->
-              <button
-                type="submit"
-                class="w-full px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition font-medium text-sm"
-              >
-                Entrar
-              </button>
-            </form>
-      
-            <!-- Enlace de ayuda -->
-            <div class="text-center">
-              <a href="#" class="text-xs text-gray-500 hover:text-gray-700 transition">¿Olvidaste tu contraseña?</a>
-            </div>
-          </div>
-        </main>
-      
-      </section>
+        </div>
+    </div>
+</section>

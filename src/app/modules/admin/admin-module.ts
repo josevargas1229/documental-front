@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AdminRoutingModule } from './admin-routing-module';
 import { Admin } from './admin';
@@ -19,6 +20,7 @@ import { Viewer } from './pages/expedientes/viewer/viewer';
 import { HttpClientModule } from '@angular/common/http';
 import { TreeNodeComponent } from './pages/expedientes/explorer/tree-node/tree-node';
 import { FormsModule } from '@angular/forms';
+import { BusquedaView } from './pages/busqueda/busqueda.view';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { FormsModule } from '@angular/forms';
     ReportesView,
     RespaldosView,
     UsuariosView,
+    BusquedaView,
     Header,
     Sidebar,
     Explorer,
@@ -42,7 +45,10 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     AdminRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    AdminRoutingModule
+
   ]
 })
 export class AdminModule { }

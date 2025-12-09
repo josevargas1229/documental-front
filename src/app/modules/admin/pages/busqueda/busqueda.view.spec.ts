@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardView } from './dashboard.view';
+import { BusquedaView } from './busqueda.view';
 
-describe('DashboardView', () => {
-  let component: DashboardView;
-  let fixture: ComponentFixture<DashboardView>;
+describe('BusquedaView', () => {
+  let component: BusquedaView;
+  let fixture: ComponentFixture<BusquedaView>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DashboardView]
+      imports: [BusquedaView]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DashboardView);
+    fixture = TestBed.createComponent(BusquedaView);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
