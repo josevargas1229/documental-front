@@ -7,6 +7,7 @@ import { Notfound } from './pages/notfound/notfound';
 import { Header } from './components/header/header';
 import { Footer } from './components/footer/footer';
 import { Public } from './public';
+import { NavbarComponent } from './components/navbar/navbar';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { Public } from './public';
     Home,
     Notfound,
     Header,
-    Footer
+    Footer,
+    NavbarComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
