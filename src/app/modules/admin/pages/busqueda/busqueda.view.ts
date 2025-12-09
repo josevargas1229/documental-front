@@ -6,30 +6,7 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
   templateUrl: './busqueda.view.html',
 })
 export class BusquedaView implements OnInit {
-
   searchForm: FormGroup;
-
-  resultsCount = 3;
-
-  // --- Catálogos ---
-  allDocumentTypes = ['Todos', 'Opción 1', 'Opción 2'];
-  filteredDocumentTypes: string[] = [...this.allDocumentTypes];
-
-  allEstados = ['Hidalgo', 'Estado de México', 'Puebla', 'Querétaro'];
-  
-  allSeries = ['Contratos', 'Manuales', 'Actas', 'Servicios', 'Procedimientos', 'Rutas'];
-  filteredSeries: string[] = [...this.allSeries]; 
-
-  municipiosData = {
-    'Hidalgo': ['Pachuca', 'Tulancingo', 'Ixmiquilpan', 'Tula', 'Actopan'],
-    'Estado de México': ['Toluca', 'Naucalpan', 'Ecatepec'],
-    'Puebla': ['Puebla de Zaragoza', 'Cholula'],
-    'Querétaro': ['Querétaro', 'San Juan del Río']
-  } as const;
-
-  filteredEstados: string[] = [...this.allEstados];
-  filteredMunicipios: string[] = [];
-
   mockResults = [
     {
       id: 1,
@@ -63,6 +40,29 @@ export class BusquedaView implements OnInit {
     },
   ];
 
+  // Paginación y ordenamiento
+  currentPage = 1;
+  pageSize = 10;
+  totalResults = 0;
+  displayedResults: any[] = [];
+  sortColumn: string = 'title';
+  sortDirection: 'asc' | 'desc' = 'asc';
+
+  // --- Catálogos ---
+  allDocumentTypes = ['Todos', 'Opción 1', 'Opción 2'];
+  filteredDocumentTypes: string[] = [...this.allDocumentTypes];
+  allEstados = ['Hidalgo', 'Estado de México', 'Puebla', 'Querétaro'];
+  allSeries = ['Contratos', 'Manuales', 'Actas', 'Servicios', 'Procedimientos', 'Rutas'];
+  filteredSeries: string[] = [...this.allSeries]; 
+  municipiosData = {
+    'Hidalgo': ['Pachuca', 'Tulancingo', 'Ixmiquilpan', 'Tula', 'Actopan'],
+    'Estado de México': ['Toluca', 'Naucalpan', 'Ecatepec'],
+    'Puebla': ['Puebla de Zaragoza', 'Cholula'],
+    'Querétaro': ['Querétaro', 'San Juan del Río']
+  } as const;
+  filteredEstados: string[] = [...this.allEstados];
+  filteredMunicipios: string[] = [];
+
   constructor(private fb: FormBuilder) {
     this.searchForm = this.fb.group({
       searchTerm: [''],
@@ -73,26 +73,22 @@ export class BusquedaView implements OnInit {
       startDate: [''],
       endDate: [''],
       estado: [''],
-      municipio: [{ value: '', disabled: true }], // ⬅️ CAMBIO 1: Deshabilitar por defecto
+      municipio: [{ value: '', disabled: true }],
       projects: [''],
     });
   }
 
   ngOnInit(): void {
-    // Filtrar tipo documental
     this.searchForm.get('documentType')?.valueChanges.subscribe(value => {
       this.filteredDocumentTypes = this.filterArray(this.allDocumentTypes, value);
     });
     
-    // ⬅️ CAMBIO 2: Añadir la lógica de filtrado para Serie
     this.searchForm.get('serie')?.valueChanges.subscribe(value => {
       this.filteredSeries = this.filterArray(this.allSeries, value);
     });
 
-    // Estado → reinicia y controla municipio
     this.searchForm.get('estado')?.valueChanges.subscribe(estado => {
       const municipioControl = this.searchForm.get('municipio') as FormControl;
-
       if (estado) {
         const key = estado as keyof typeof this.municipiosData;
         const municipios = this.municipiosData[key] || [];
@@ -107,12 +103,10 @@ export class BusquedaView implements OnInit {
       municipioControl.setValue('', { emitEvent: false });
     });
 
-    // Filtrado de municipio dependiente
     this.searchForm.get('municipio')?.valueChanges.subscribe(value => {
       const estadoActual = this.searchForm.get('estado')?.value;
       const key = estadoActual as keyof typeof this.municipiosData;
       const municipiosBase = this.municipiosData[key] || [];
-
       this.filteredMunicipios = this.filterArray([...municipiosBase], value);
     });
   }
@@ -125,12 +119,11 @@ export class BusquedaView implements OnInit {
   handleSearch(): void {
     const data = this.searchForm.value;
     console.log('Búsqueda ejecutada:', data);
-
-    if (Object.values(data).some(v => v && v !== 'Todos')) {
-      this.resultsCount = Math.floor(Math.random() * 5) + 3;
-    } else {
-      this.resultsCount = 0;
-    }
+    // Simular resultados filtrados (en real, llamar servicio)
+    this.displayedResults = [...this.mockResults]; // Filtrar aquí basado en form
+    this.totalResults = this.displayedResults.length;
+    this.sortResults();
+    this.paginateResults();
   }
 
   resetFilters(): void {
@@ -138,23 +131,62 @@ export class BusquedaView implements OnInit {
       documentType: 'Todos',
       estado: '',
     });
-
     this.filteredDocumentTypes = [...this.allDocumentTypes];
     this.filteredEstados = [...this.allEstados];
     this.filteredMunicipios = [];
-    this.filteredSeries = [...this.allSeries]; // ⬅️ Limpiar filtro de Serie
-    
+    this.filteredSeries = [...this.allSeries];
     this.searchForm.get('municipio')?.disable({ emitEvent: false });
     this.searchForm.get('municipio')?.setValue('', { emitEvent: false }); 
-
-    this.resultsCount = 0;
+    this.totalResults = 0;
+    this.displayedResults = [];
+    this.currentPage = 1;
   }
 
-  loadMoreResults(): void {
-    this.resultsCount += 3;
+  sortBy(column: string): void {
+    if (this.sortColumn === column) {
+      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortColumn = column;
+      this.sortDirection = 'asc';
+    }
+    this.sortResults();
+    this.paginateResults();
+  }
+
+  sortResults(): void {
+    this.displayedResults.sort((a, b) => {
+      let valA = a[this.sortColumn];
+      let valB = b[this.sortColumn];
+      if (typeof valA === 'string') valA = valA.toLowerCase();
+      if (typeof valB === 'string') valB = valB.toLowerCase();
+      if (valA < valB) return this.sortDirection === 'asc' ? -1 : 1;
+      if (valA > valB) return this.sortDirection === 'asc' ? 1 : -1;
+      return 0;
+    });
+  }
+
+  changePage(page: number): void {
+    if (page < 1 || page > this.totalPages) return;
+    this.currentPage = page;
+    this.paginateResults();
+  }
+
+  get totalPages(): number {
+    return Math.ceil(this.totalResults / this.pageSize);
+  }
+
+  paginateResults(): void {
+    const start = (this.currentPage - 1) * this.pageSize;
+    const end = start + this.pageSize;
+    this.displayedResults = this.displayedResults.slice(start, end);
   }
 
   exportResults(): void {
     console.log('Exportando...');
+  }
+
+  viewDocument(doc: any): void {
+    console.log('Visualizando documento:', doc);
+    // Lógica para modal o vista detallada con highlight
   }
 }

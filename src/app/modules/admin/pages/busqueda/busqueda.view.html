@@ -1,22 +1,18 @@
-<div class="min-h-screen bg-gray-50 relative overflow-hidden">
-  
-
-  <div class="relative z-10 p-6 lg:p-12 max-w-7xl mx-auto">
-    <!-- Título institucional -->
-    <div class="mb-10 text-center lg:text-left">
-      <h1 class="text-4xl lg:text-5xl font-bold" style="color: #691831;">
+<div class="min-h-screen bg-gray-50">
+  <div class="px-4 py-4 md:px-8 lg:px-12 max-w-7xl mx-auto">
+    <h1 class="text-4xl pb-5  lg:text-5xl font-bold" style="color: #691831;">
         Búsqueda Avanzada de Documentos
-      </h1>
-      <p class="text-lg text-gray-600 mt-2">
-        Combine la búsqueda por texto OCR y metadatos para resultados precisos.
-      </p>
-    </div>
+    </h1>
+    <!-- Subtítulo más cerca -->
+    <p class="text-center md:text-left text-gray-600 text-sm md:text-base -mt-2 mb-8">
+      Combine la búsqueda por texto OCR y metadatos para resultados precisos.
+    </p>
 
-    <!-- Tarjeta principal -->
+    <!-- Formulario -->
     <div class="bg-white rounded-2xl shadow-xl border border-[#DDC9A3]/30 overflow-hidden">
-      <div class="bg-[#691831] px-8 py-5">
-        <h3 class="text-xl font-bold text-white flex items-center gap-3">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="bg-[#691831] px-6 py-4">
+        <h3 class="text-lg font-bold text-white flex items-center gap-3">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
           </svg>
@@ -24,102 +20,69 @@
         </h3>
       </div>
 
-      <form [formGroup]="searchForm" (ngSubmit)="handleSearch()" class="p-8">
+      <form [formGroup]="searchForm" (ngSubmit)="handleSearch()" class="p-6">
         <!-- Término principal -->
-        <div class="mb-8">
+        <div class="mb-6">
           <label class="block text-sm font-semibold text-[#691831] mb-2">
             Término de Búsqueda (Texto OCR / Clave)
           </label>
           <div class="relative">
             <input type="text" formControlName="searchTerm"
-                   class="w-full pl-12 pr-4 py-4 rounded-lg border-2 border-[#DDC9A3] focus:border-[#691831] focus:ring-4 focus:ring-[#A02142]/20 transition"
+                   class="w-full pl-12 pr-4 py-3.5 rounded-lg border-2 border-[#DDC9A3] focus:border-[#691831] focus:ring-4 focus:ring-[#A02142]/20 transition"
                    placeholder="Palabra clave, contenido dentro del documento, título...">
-            <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 text-[#691831]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#691831]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
             </svg>
           </div>
         </div>
 
-        <h4 class="text-lg font-bold text-[#691831] mb-6 border-b-2 border-[#BC955B] pb-2 inline-block">
+        <h4 class="text-base font-bold text-[#691831] mb-4 border-b-2 border-[#BC955B] pb-1.5 inline-block">
           Metadatos para Filtros Adicionales
         </h4>
 
-        <!-- Grid filtros -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <!-- Expediente -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Número de Expediente</label>
-            <input type="text" formControlName="expedientNumber" placeholder="Ej: EXP-2024-005"
-                   class="mt-2 w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#691831] focus:ring-2 focus:ring-[#A02142]/20">
-          </div>
-
-          <!-- Titular -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Nombre del Titular</label>
-            <input type="text" formControlName="ownerName" placeholder="Nombre completo del titular"
-                   class="mt-2 w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#691831] focus:ring-2 focus:ring-[#A02142]/20">
-          </div>
-
-          <!-- Tipo documental -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Tipo Documental</label>
-            <input type="text" formControlName="documentType" list="doc-types" placeholder="Escriba para filtrar..."
-                   class="mt-2 w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#691831] focus:ring-2 focus:ring-[#A02142]/20">
+        <!-- Filtros -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <input type="text" formControlName="expedientNumber" placeholder="Número de Expediente"
+                 class="px-4 py-3 rounded-lg border border-gray-300 focus:border-[#691831] focus:ring-2 focus:ring-[#A02142]/20">
+          <input type="text" formControlName="ownerName" placeholder="Nombre del Titular"
+                 class="px-4 py-3 rounded-lg border border-gray-300 focus:border-[#691831] focus:ring-2 focus:ring-[#A02142]/20">
+          <div class="relative">
+            <input type="text" formControlName="documentType" list="doc-types" placeholder="Tipo Documental"
+                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#691831] focus:ring-2 focus:ring-[#A02142]/20">
             <datalist id="doc-types"><option *ngFor="let t of filteredDocumentTypes" [value]="t"></option></datalist>
           </div>
         </div>
 
-        <!-- Serie + Ubicación + Fechas -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Serie Documental</label>
-            <input type="text" formControlName="serie" list="serie-options" placeholder="Seleccione serie..."
-                   class="mt-2 w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#691831] focus:ring-2 focus:ring-[#A02142]/20">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+          <div class="relative">
+            <input type="text" formControlName="serie" list="serie-options" placeholder="Serie Documental"
+                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#691831] focus:ring-2 focus:ring-[#A02142]/20">
             <datalist id="serie-options"><option *ngFor="let s of filteredSeries" [value]="s"></option></datalist>
           </div>
-
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Estado</label>
-            <input type="text" formControlName="estado" list="estado-options" placeholder="Estado..."
-                   class="mt-2 w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#691831] focus:ring-2 focus:ring-[#A02142]/20">
+          <div class="relative">
+            <input type="text" formControlName="estado" list="estado-options" placeholder="Estado"
+                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#691831] focus:ring-2 focus:ring-[#A02142]/20">
             <datalist id="estado-options"><option *ngFor="let e of filteredEstados" [value]="e"></option></datalist>
           </div>
-
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Municipio</label>
-            <input type="text" formControlName="municipio" list="municipio-options" placeholder="Primero seleccione estado"
-                   [disabled]="!searchForm.get('estado')?.value"
-                   class="mt-2 w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#691831] focus:ring-2 focus:ring-[#A02142]/20 disabled:bg-gray-100">
+          <div class="relative">
+            <input type="text" formControlName="municipio" list="municipio-options" placeholder="Municipio"
+                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#691831] focus:ring-2 focus:ring-[#A02142]/20 disabled:bg-gray-100">
             <datalist id="municipio-options"><option *ngFor="let m of filteredMunicipios" [value]="m"></option></datalist>
           </div>
-
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <label class="block text-sm font-medium text-gray-700">Fecha Inicio</label>
-              <input type="date" formControlName="startDate"
-                     class="mt-2 w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#691831] focus:ring-2 focus:ring-[#A02142]/20">
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700">Fecha Fin</label>
-              <input type="date" formControlName="endDate"
-                     class="mt-2 w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#691831] focus:ring-2 focus:ring-[#A02142]/20">
-            </div>
+          <div class="grid grid-cols-2 gap-3">
+            <input type="date" formControlName="startDate" class="px-4 py-3 rounded-lg border border-gray-300 focus:border-[#691831]">
+            <input type="date" formControlName="endDate" class="px-4 py-3 rounded-lg border border-gray-300 focus:border-[#691831]">
           </div>
         </div>
 
-        <!-- Botones acción -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-end pt-6 border-t border-[#DDC9A3]/50">
+        <div class="flex flex-col sm:flex-row gap-3 justify-end pt-4 border-t border-[#DDC9A3]/40">
           <button type="button" (click)="resetFilters()"
-                  class="px-6 py-3 bg-[#98989A] text-white font-medium rounded-lg hover:bg-[#6F7271] transition flex items-center gap-2">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v6m0 0h6M4 10l6-6m10 6v6m0 0h-6m6 0l-6-6"/>
-            </svg>
+                  class="px-5 py-2.5 bg-[#98989A] text-white rounded-lg hover:bg-[#6F7271] transition text-sm font-medium">
             Limpiar filtros
           </button>
-
           <button type="submit"
-                  class="px-8 py-3 bg-[#691831] text-white font-bold rounded-lg hover:bg-[#A02142] transition shadow-lg flex items-center gap-3">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  class="px-7 py-2.5 bg-[#691831] text-white font-bold rounded-lg hover:bg-[#A02142] transition shadow-md text-sm flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
             </svg>
             Buscar Documentos
@@ -129,11 +92,11 @@
     </div>
 
     <!-- Resultados -->
-    <div class="mt-12">
+<div class="mt-12" *ngIf="totalResults > 0">
       <div class="flex justify-between items-center mb-6">
         <h2 class="text-2xl font-bold" style="color: #691831;">
           Resultados de Búsqueda
-          <span class="text-gray-600 font-normal ml-2">({{ resultsCount }} documentos encontrados)</span>
+          <span class="text-gray-600 font-normal ml-2">({{ totalResults }} documentos encontrados)</span>
         </h2>
         <button (click)="exportResults()"
                 class="px-5 py-3 border-2 border-[#BC955B] text-[#691831] bg-[#DDC9A3]/20 rounded-lg hover:bg-[#DDC9A3]/40 transition font-medium flex items-center gap-2">
@@ -144,45 +107,66 @@
         </button>
       </div>
 
-      <div class="space-y-6">
-        <div *ngFor="let doc of mockResults | slice:0:resultsCount"
-             class="bg-white border-2 border-[#DDC9A3]/40 rounded-xl p-6 hover:shadow-xl transition">
-          <!-- Cabecera resultado con acento dorado -->
-          <div class="flex justify-between items-start mb-4 pb-4 border-b border-[#BC955B]/30">
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 bg-[#691831] rounded-lg flex items-center justify-center">
-                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-xl font-bold text-[#691831]">{{ doc.title }}</h3>
-                <span class="text-xs bg-[#BC955B] text-white px-3 py-1 rounded-full">Tipo: {{ doc.type }}</span>
-              </div>
-            </div>
-            <div class="flex gap-3">
-              <button class="p-3 bg-[#DDC9A3]/30 rounded-lg hover:bg-[#BC955B]/50 transition">
-                <svg class="w-5 h-5 text-[#691831]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                </svg>
-              </button>
-            </div>
-          </div>
+      <div class="overflow-x-auto bg-white rounded-xl shadow-lg border border-[#DDC9A3]/30">
+        <table class="min-w-full divide-y divide-[#BC955B]/20">
+          <thead class="bg-[#691831]">
+            <tr>
+              <th (click)="sortBy('title')" class="px-6 py-3 text-left text-sm font-medium text-white uppercase tracking-wider cursor-pointer">
+                Título {{ sortColumn === 'title' ? (sortDirection === 'asc' ? '↑' : '↓') : '' }}
+              </th>
+              <th (click)="sortBy('type')" class="px-6 py-3 text-left text-sm font-medium text-white uppercase tracking-wider cursor-pointer">
+                Tipo {{ sortColumn === 'type' ? (sortDirection === 'asc' ? '↑' : '↓') : '' }}
+              </th>
+              <th (click)="sortBy('expedient')" class="px-6 py-3 text-left text-sm font-medium text-white uppercase tracking-wider cursor-pointer">
+                Expediente {{ sortColumn === 'expedient' ? (sortDirection === 'asc' ? '↑' : '↓') : '' }}
+              </th>
+              <th (click)="sortBy('location')" class="px-6 py-3 text-left text-sm font-medium text-white uppercase tracking-wider cursor-pointer">
+                Ubicación {{ sortColumn === 'location' ? (sortDirection === 'asc' ? '↑' : '↓') : '' }}
+              </th>
+              <th (click)="sortBy('owner')" class="px-6 py-3 text-left text-sm font-medium text-white uppercase tracking-wider cursor-pointer">
+                Titular {{ sortColumn === 'owner' ? (sortDirection === 'asc' ? '↑' : '↓') : '' }}
+              </th>
+              <th (click)="sortBy('date')" class="px-6 py-3 text-left text-sm font-medium text-white uppercase tracking-wider cursor-pointer">
+                Fecha {{ sortColumn === 'date' ? (sortDirection === 'asc' ? '↑' : '↓') : '' }}
+              </th>
+              <th class="px-6 py-3 text-left text-sm font-medium text-white uppercase tracking-wider">
+                Etiquetas
+              </th>
+              <th class="px-6 py-3 text-left text-sm font-medium text-white uppercase tracking-wider">
+                Acciones
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <tr *ngFor="let doc of displayedResults" class="hover:bg-[#DDC9A3]/10 cursor-pointer" (click)="viewDocument(doc)">
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[#691831]">{{ doc.title }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ doc.type }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ doc.expedient }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ doc.location }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ doc.owner }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ doc.date }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ doc.tags }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                <button class="text-[#691831] hover:text-[#A02142]">Ver</button>
+                <button class="ml-4 text-[#691831] hover:text-[#A02142]">Descargar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
-            <p><span class="font-semibold text-[#691831]">Expediente:</span> {{ doc.expedient }}</p>
-            <p><span class="font-semibold text-[#691831]">Titular:</span> {{ doc.owner }}</p>
-            <p class="md:col-span-2"><span class="font-semibold text-[#691831]">Ubicación:</span> {{ doc.location }}</p>
-            <p><span class="font-semibold text-[#691831]">Fecha:</span> {{ doc.date }}</p>
-            <p><span class="font-semibold text-[#691831]">Etiquetas:</span> {{ doc.tags }}</p>
-          </div>
-        </div>
-
-        <div *ngIf="resultsCount > 3" class="text-center pt-8">
-          <button (click)="loadMoreResults()" class="text-[#A02142] font-bold hover:text-[#691831] transition text-lg">
-            Ver más resultados →
-          </button>
-        </div>
+      <div class="flex justify-center mt-6">
+        <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1"
+                class="px-4 py-2 bg-[#98989A] text-white rounded-l-lg hover:bg-[#6F7271]" [class.opacity-50]="currentPage === 1">
+          Anterior
+        </button>
+        <span class="px-4 py-2 bg-[#DDC9A3]/20 text-[#691831] font-medium">
+          Página {{ currentPage }} de {{ totalPages }}
+        </span>
+        <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages"
+                class="px-4 py-2 bg-[#98989A] text-white rounded-r-lg hover:bg-[#6F7271]" [class.opacity-50]="currentPage === totalPages">
+          Siguiente
+        </button>
       </div>
     </div>
   </div>
