@@ -1,0 +1,9 @@
+<div class="relative w-full h-full">
+    <!-- <div *ngIf="isLoading" class="absolute inset-0 flex items-center justify-center z-50 bg-white/80 backdrop-blur-sm">
+        <span class="text-blue-600 font-bold animate-pulse text-xl">Cargando documento...</span>
+    </div> -->
+
+    <!-- ¡Aquí usamos el visor especializado! -->
+    <app-pdf-viewer *ngIf="currentUrl && fileType === 'pdf'" [url]="currentUrl">
+    </app-pdf-viewer>
+</div>

@@ -1,0 +1,61 @@
+<div class="flex flex-col h-screen w-full bg-gray-100">
+
+    <!-- Toolbar integrado -->
+    <app-toolbar [currentScale]="scale" [rotation]="rotation" [ocrVisible]="ocrVisible" [notesMode]="notesMode"
+        [currentPage]="viewMode === 'paginated' ? currentPage : undefined" [totalPages]="totalPages"
+        [showPagination]="viewMode === 'paginated' && totalPages > 1" [viewMode]="viewMode" [showViewModeToggle]="true"
+        [documentType]="'pdf'" (zoomIn)="onZoomIn()" (zoomOut)="onZoomOut()" (setZoom)="onSetZoom($event)"
+        (rotate)="onRotate()" (fitToWidth)="onFitToWidth()" (fitToPage)="onFitToPage()" (resetView)="onResetView()"
+        (toggleOcr)="onToggleOcr()" (toggleNotes)="onToggleNotes()" (nextPage)="onNextPage()" (prevPage)="onPrevPage()"
+        (goToPage)="onGoToPage($event)" (changeViewMode)="onChangeViewMode($event)" (print)="onPrint()"
+        (download)="onDownload()">
+    </app-toolbar>
+
+    <!-- Área de visualización -->
+    <div class="flex-1 relative overflow-auto bg-gray-200">
+
+        <!-- Spinner de carga -->
+        @if (isLoading) {
+        <div class="absolute inset-0 flex items-center justify-center z-[70] bg-white/80 backdrop-blur-sm">
+            <div class="flex flex-col items-center gap-3">
+                <svg class="w-12 h-12 text-blue-600 animate-spin" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                    </path>
+                </svg>
+                <span class="text-blue-600 font-bold text-xl">Cargando PDF...</span>
+            </div>
+        </div>
+        }
+
+        <!-- Contenedor del documento -->
+        <div class="relative z-0 w-full h-full p-8">
+            <div class="flex justify-center">
+                <div class="inline-block relative">
+
+                    <!-- Vista paginada -->
+                    @if (viewMode === 'paginated') {
+                    <canvas #docCanvas class="block bg-white shadow-2xl mx-auto" [attr.width]="pageWidth"
+                        [attr.height]="pageHeight" [style.transform]="'rotate(' + rotation + 'deg)'">
+                    </canvas>
+                    }
+
+                    <!-- Vista en cascada -->
+                    @if (viewMode === 'cascade') {
+                    <div #cascadeContainer class="space-y-6 flex flex-col items-center pb-10"></div>
+                    }
+
+                    <!-- Capas superpuestas -->
+                    <div #ocrLayer class="absolute inset-0 pointer-events-none" [class.hidden]="!ocrVisible">
+                    </div>
+                    <div #notesLayer class="absolute inset-0" [class.pointer-events-none]="!notesMode">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

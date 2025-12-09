@@ -1,0 +1,24 @@
+<div class="flex flex-col h-screen w-full bg-gray-100">
+
+    <!-- Toolbar -->
+    <app-toolbar [currentScale]="scale" [ocrVisible]="ocrLayerVisible" [notesMode]="notesModeActive"
+        (zoomIn)="onZoomIn()" (zoomOut)="onZoomOut()" (rotate)="onRotate()" (fitToWidth)="fitToWidth()"
+        (fitToPage)="fitToPage()" (toggleOcr)="toggleOcrLayer()" (toggleNotes)="toggleNotesMode()"
+        (print)="printDocument()" (download)="downloadOriginal()">
+    </app-toolbar>
+
+    <!-- Área de visualización -->
+    <div class="flex-1 relative overflow-auto bg-gray-200 p-8">
+        <div class="flex justify-center">
+            <div class="inline-block">
+                <!-- Aquí va el ng-content (canvas o cascade) -->
+                <ng-content></ng-content>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer opcional -->
+    <!-- <div class="h-10 bg-white border-t border-gray-300 flex items-center justify-center text-sm text-gray-600">
+        Página 1
+    </div> -->
+</div>

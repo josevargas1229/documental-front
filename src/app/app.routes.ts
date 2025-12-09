@@ -15,5 +15,9 @@ export const routes: Routes = [
     loadChildren: () => import('./modules/admin/admin-module').then(m => m.AdminModule),
     // canLoad: [AuthGuard]
   },
+  {
+    path: 'visor',
+    loadChildren: () => import('./modules/viewer/viewer.routes').then(m => m.VIEWER_ROUTES)
+  },
   { path: '**', redirectTo: '/public/notfound' }
 ];
