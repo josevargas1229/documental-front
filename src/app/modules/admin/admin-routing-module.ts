@@ -8,6 +8,7 @@ import { ExpedientesView } from './pages/expedientes/expedientes.view';
 import { ReportesView } from './pages/reportes/reportes.view';
 import { RespaldosView } from './pages/respaldos/respaldos.view';
 import { UsuariosView } from './pages/usuarios/usuarios.view';
+import { BusquedaView } from './pages/busqueda/busqueda.view';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -24,6 +25,19 @@ const routes: Routes = [
             {
               label: 'dashboard',
               path: '/admin/dashboard',
+            },
+          ],
+        },
+      },
+      {
+        path: 'busqueda', // ⬅️ NUEVA RUTA
+        component: BusquedaView,
+        data: {
+          title: 'Búsqueda Avanzada',
+          breadcrumb: [
+            {
+              label: 'Búsqueda',
+              path: '/admin/busqueda',
             },
           ],
         },

@@ -1,1 +1,21 @@
-<p>navbar works!</p>
+<nav class="bg-white border-b border-gray-200">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <div class="flex items-center">
+                <a routerLink="/public/home" class="flex-shrink-0 flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gray-700 flex items-center justify-center text-white font-bold text-sm">SV</div>
+                    <span class="text-lg font-semibold text-gray-900">SADIT-CVH</span>
+                </a>
+            </div>
+
+            <div class="flex items-center">
+                <button
+                    (click)="goToLogin()"
+                    class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition shadow-md"
+                >
+                    Iniciar Sesión
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
